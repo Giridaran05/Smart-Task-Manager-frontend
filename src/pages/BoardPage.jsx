@@ -10,13 +10,15 @@ export default function BoardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (!boardId) return;
 
     const fetchBoard = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/boards/${boardId}`
+          `${API_URL}/api/boards/${boardId}`
         );
 
         setBoard(res.data);
@@ -60,13 +62,18 @@ export default function BoardPage() {
         style={{
           fontSize: "28px",
           fontWeight: "600",
-          marginBottom: "10px",
+          marginBottom: "20px",
         }}
       >
         {board?.title || "Smart Task Manager 🚀"}
       </h1>
 
-      <KanbanBoard boardId={boardId} />
+      {/* IMPORTANT: Pass fetchBoard for refresh */}
+      <KanbanBoard
+        boardId={boardId}
+        board={board}
+        setBoard={setBoard}
+      />
     </div>
   );
 }

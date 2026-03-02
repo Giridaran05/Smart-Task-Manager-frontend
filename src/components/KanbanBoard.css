@@ -1,0 +1,137 @@
+.kanban-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #111827);
+  color: white;
+  padding: 30px 40px;
+}
+
+.kanban-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.kanban-header h2 {
+  font-weight: 600;
+}
+
+.header-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.header-controls input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.header-controls button {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #10b981;
+  color: white;
+  cursor: pointer;
+}
+
+.kanban-body {
+  display: flex;
+  gap: 30px;
+}
+
+.board-section {
+  flex: 3;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+}
+
+.list-column {
+  background: #1e293b;
+  padding: 18px;
+  width: 320px;
+  border-radius: 18px;
+  flex-shrink: 0;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-container {
+  min-height: 40px;
+}
+
+.card {
+  background: #1f2937;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.card-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.priority {
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.priority.high {
+  background: #ef4444;
+}
+
+.priority.medium {
+  background: #f59e0b;
+}
+
+.priority.low {
+  background: #22c55e;
+}
+
+.add-card-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+}
+
+.activity-panel {
+  flex: 1;
+  background: #0f172a;
+  padding: 20px;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+}
+
+.activity-item {
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
