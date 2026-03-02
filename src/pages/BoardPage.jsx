@@ -1,8 +1,51 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import KanbanBoard from "../components/KanbanBoard";
 
 export default function BoardPage() {
   const { boardId } = useParams();
+
+  const [board, setBoard] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!boardId) return;
+
+    const fetchBoard = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/boards/${boardId}`
+        );
+
+        setBoard(res.data);
+      } catch (err) {
+        console.error("Board fetch error:", err);
+        setError("Failed to load board");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBoard();
+  }, [boardId]);
+
+  if (loading) {
+    return (
+      <div style={{ color: "white", padding: "30px" }}>
+        Loading board...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ color: "red", padding: "30px" }}>
+        {error}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -17,10 +60,10 @@ export default function BoardPage() {
         style={{
           fontSize: "28px",
           fontWeight: "600",
-          marginBottom: "30px",
+          marginBottom: "10px",
         }}
       >
-        Smart Task Manager 🚀
+        {board?.title || "Smart Task Manager 🚀"}
       </h1>
 
       <KanbanBoard boardId={boardId} />
